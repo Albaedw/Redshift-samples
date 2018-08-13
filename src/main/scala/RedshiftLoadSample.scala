@@ -23,7 +23,7 @@ object RedshiftLoadSample {
     val jdbcPort = appConf.getConfig(args(2)).getString("redshiftDbPort")
     val jdbcDatabase = appConf.getConfig(args(2)).getString("redshiftDbName")
     val jdbcUrl = s"jdbc:redshift://${jdbcHostname}:${jdbcPort}/${jdbcDatabase}?user=${jdbcUsername}&password=${jdbcPassword}"
-    //val jdbcUrl = "jdbc:redshift://mytestcluster.cnu6ujsnwamy.us-west-1.redshift.amazonaws.com:5439/dev?user=masteruser&password=5tgb6yhN"
+    //val jdbcUrl = "jdbc:redshift://mytestcluster.amy.us-west-1.redshift.amazonaws.com:5439/dev?user=masteer&password=5t"
     //println(jdbcUrl)
     val sc = new SparkContext(conf) 
     sc.hadoopConfiguration.set("fs.s3n.awsAccessKeyId", "")
@@ -37,7 +37,7 @@ object RedshiftLoadSample {
     .option("url", jdbcUrl)
     //.option("dbtable", "products")
     .option("query", "select count(*) from products")
-    //.option("aws_iam_role", "arn:aws:iam::376622691220331:role/Newredshiftrole")
+    //.option("aws_iam_role", "arn:aws:iam::376622:role/Newredshiftrole")
     .option("forward_spark_s3_credentials","true")
     .option("tempdir", "s3n://albabucket/temp/")
     .load()
